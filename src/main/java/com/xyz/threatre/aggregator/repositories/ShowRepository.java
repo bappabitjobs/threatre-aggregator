@@ -1,5 +1,6 @@
 package com.xyz.threatre.aggregator.repositories;
 
+import com.xyz.threatre.aggregator.entities.Movie;
 import com.xyz.threatre.aggregator.entities.Show;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -7,7 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface ShowRepository extends JpaRepository<Show, Integer> {
 
@@ -19,4 +23,19 @@ public interface ShowRepository extends JpaRepository<Show, Integer> {
 
     @Query(value = "select * from shows where movie_id = :movieId" , nativeQuery = true)
     public List<Show> getAllShowsOfMovie(@Param("movieId")Integer movieId);
+
+    @Query(value = "select s.movie from SHOW s where lower(s.room.theater.city)=lower(:city)")
+    List<Movie> findByCityIgnoreCase(String city);
+
+    @Query("""
+            select s.* from Show s where
+            lower(s.room.theatre.city = lower(:city)
+            and lower(s.movie.id) = lower(:movieId) 
+             and date(s.showTime) = :date """
+    )
+    List<Show> findShowByMovieCityAndDate(String city, String movieName, LocalDate localDate);
+
+    Optional<Show> findByRoom_Threatre_IdAndShowTime(Long threatreId, LocalDateTime showTime);
+
+
 }

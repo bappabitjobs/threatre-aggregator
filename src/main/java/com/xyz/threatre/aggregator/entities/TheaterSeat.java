@@ -26,5 +26,5 @@ public class TheaterSeat {
 
     @ManyToOne
     @JoinColumn
-    private MovieTheater theater;
+    private Room room;
 }

@@ -7,6 +7,6 @@ public class MovieNotFound extends RuntimeException {
     private static final long serialVersionUID = -5385129013790060351L;
 
     public MovieNotFound() {
-        super("Movie dose not found");
+        super("No movie found");
     }
 }
