@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,7 +24,7 @@ public class Ticket {
     private Show show;
 
     @ManyToOne
-    private TheaterSeat seat;
+    private Seat seat;
 
     private LocalDateTime bookingTime;
 
@@ -31,10 +32,6 @@ public class Ticket {
     private String customerName;
 
     private TicketStatus status;
-
-
-
-
-
+    private BigDecimal price;
 
 }

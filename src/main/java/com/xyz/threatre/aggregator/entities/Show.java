@@ -21,11 +21,13 @@ public class Show {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer showId;
+    private Long showId;
 
     private Time time;
 
     private Date date;
+
+    private Room room;
 
     @ManyToOne
     @JoinColumn
@@ -34,6 +36,8 @@ public class Show {
     @ManyToOne
     @JoinColumn
     private Theater theater;
+
+
 
 
 }

@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ShowService {
     List<Show> getShowByMovieCityAndDate(String city, String movieId, LocalDate date);
+
+
 }

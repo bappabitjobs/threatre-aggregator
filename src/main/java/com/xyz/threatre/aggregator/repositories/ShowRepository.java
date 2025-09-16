@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public interface ShowRepository extends JpaRepository<Show, Integer> {
+public interface ShowRepository extends JpaRepository<Show, Long> {
 
     @Query(value = "select time from shows where date = :date and movie_id = :movieId and theater_id = :theaterId" , nativeQuery = true)
     public List<Time> getShowTimingsOnDate(@Param("date") Date date, @Param("theaterId")Integer theaterId, @Param("movieId")Integer movieId);
@@ -35,7 +35,8 @@ public interface ShowRepository extends JpaRepository<Show, Integer> {
     )
     List<Show> findShowByMovieCityAndDate(String city, String movieName, LocalDate localDate);
 
-    Optional<Show> findByRoom_Threatre_IdAndShowTime(Long threatreId, LocalDateTime showTime);
+    Optional<Show> findByRoom_Threatre_IdAndShowTime(Long theatreId, LocalDateTime showTime);
 
+    List<Show> findByRoom_Theatre_IdAndShowTimeBetween(Long theatreId, LocalDateTime dayStart, LocalDateTime dayEnd);
 
 }
