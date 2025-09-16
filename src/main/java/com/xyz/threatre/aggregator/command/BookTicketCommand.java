@@ -5,11 +5,12 @@ import com.xyz.threatre.aggregator.entities.Show;
 import com.xyz.threatre.aggregator.entities.Seat;
 import com.xyz.threatre.aggregator.entities.Ticket;
 import com.xyz.threatre.aggregator.repositories.TicketRepository;
+import com.xyz.threatre.aggregator.service.TicketBookingService;
 
 import java.time.LocalDateTime;
 import java.util.function.Consumer;
 
-public class BookTicketCommand implements Runnable {
+public class BookTicketCommand implements TicketCommand {
 
     private final Show show;
     private final Seat seat;
@@ -40,8 +41,8 @@ public class BookTicketCommand implements Runnable {
         ticket.setCustomerName (customerName);
         ticket.setCustomerEmail(customerEmail);
         ticket.setStatus(TicketStatus.BOOKED);
-        Ticket saved = ticketRepository.save(ticket);
-        callback.accept(saved);
+        Ticket savedTicket = ticketRepository.save(ticket);
+        callback.accept(savedTicket);
     }
 }
 

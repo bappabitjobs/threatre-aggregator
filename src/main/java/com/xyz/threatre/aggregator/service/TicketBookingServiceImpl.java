@@ -53,10 +53,9 @@ public class TicketBookingServiceImpl implements TicketBookingService{
       return ticket;
     }
 
-    public List<Ticket> bookTickets (Long showId, List<Long> seatIds, String customerName, String customerEmail) throws InterruptedException, ExecutionException {
+    public List<Ticket> bookTickets(Long showId, List<Long> seatIds, String customerName, String customerEmail) throws InterruptedException, ExecutionException {
         Show show = showRepository.findById(showId)
                 .orElseThrow(() -> new ShowNotFound());
-
         List<Seat> seats = seatRepository.findAllById(seatIds);
         List<Future<Ticket>> futures = new ArrayList<>();
 
@@ -80,7 +79,6 @@ public class TicketBookingServiceImpl implements TicketBookingService{
     }
 
     public BookingResult bookTicketsWithOffers (Long showId, List<Long> seatIds, String customerName, String customerEmail, String city, String theatre){
-
     Show show = showRepository.findById(showId)
             .orElseThrow(ShowNotFound::new);
         List<Seat> seats = seatRepository.findAllById(seatIds);
