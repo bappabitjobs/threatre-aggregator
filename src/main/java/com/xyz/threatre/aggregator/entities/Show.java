@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Time;
-import java.util.ArrayList;
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "SHOWS")
@@ -23,7 +21,7 @@ public class Show {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long showId;
 
-    private Time time;
+    private Time showTime;
 
     private Date date;
 

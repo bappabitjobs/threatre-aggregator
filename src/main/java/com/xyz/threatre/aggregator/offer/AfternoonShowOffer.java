@@ -7,14 +7,14 @@ import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
 
-public class AfternoonStratgey implements OfferStrategy{
+public class AfternoonShowOffer implements OfferStrategy{
 
     @Override
     public BigDecimal applyOffer(List<Ticket> tickets, Show show, String city, String theatre) {
-        LocalTime showTime = show.getTime().toLocalTime();
+        LocalTime showTime = show.getShowTime().toLocalTime();
         if(showTime.isAfter(LocalTime.NOON) && showTime.isBefore(LocalTime.of(18,0))){
            BigDecimal total = tickets.stream().map(Ticket::getPrice).reduce(BigDecimal.ZERO,BigDecimal::add);
-           total.multiply(BigDecimal.valueOf(0.2));
+          return total.multiply(BigDecimal.valueOf(0.2));
         }
         return BigDecimal.ZERO;
     }

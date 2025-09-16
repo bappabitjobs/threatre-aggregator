@@ -25,7 +25,7 @@ public class TheatreService {
 
     public Show updateShow(Long showId, Show updateShow){
         Show show = showRepository.getReferenceById(showId);
-        show.setTime(updateShow.getTime());
+        show.setShowTime(updateShow.getShowTime());
         show.setDate(updateShow.getDate());
         show.setRoom(updateShow.getRoom());
         return showRepository.save(show);

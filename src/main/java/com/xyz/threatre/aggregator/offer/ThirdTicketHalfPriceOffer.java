@@ -19,9 +19,10 @@ public class ThirdTicketHalfPriceOffer implements OfferStrategy {
     @Override
     public BigDecimal applyOffer(List<Ticket> tickets, Show show, String city, String theatre) {
         if (tickets.size() < 3) return BigDecimal.ZERO;
-        if (eligibleCities.contains(city) || eligibleTheatres.contains(theatre))
-            return BigDecimal.ZERO;
-         BigDecimal ticketPrice = tickets.get(2).getPrice();
-         return ticketPrice.multiply(BigDecimal.valueOf(0.5));
+        if (eligibleCities.contains(city) || eligibleTheatres.contains(theatre)) {
+            BigDecimal ticketPrice = tickets.get(2).getPrice();
+            return ticketPrice.multiply(BigDecimal.valueOf(0.5));
         }
+        return BigDecimal.ZERO;
+    }
     }
