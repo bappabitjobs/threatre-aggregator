@@ -3,6 +3,7 @@ package com.xyz.threatre.aggregator.rest;
 import com.xyz.threatre.aggregator.entities.Show;
 import com.xyz.threatre.aggregator.repositories.ShowRepository;
 import com.xyz.threatre.aggregator.rest.request.ShowRequest;
+import com.xyz.threatre.aggregator.service.BrowseShowService;
 import com.xyz.threatre.aggregator.service.ShowService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,13 +16,20 @@ import java.util.List;
 @RequestMapping("/browse")
 public class ShowController {
     private final ShowService showService;
+    private final BrowseShowService browseShowService;
 
-    public ShowController(ShowService showService) {
+    public ShowController(ShowService showService, BrowseShowService browseShowService) {
         this.showService = showService;
+        this.browseShowService = browseShowService;
     }
 
     @GetMapping("/show-by-movie")
     public List<Show> getShowByCityAndMovie(@ModelAttribute ShowRequest showRequest){
         return showService.getShowByMovieCityAndDate(showRequest.getCity(),showRequest.getMovieId(),showRequest.getShowDate());
+    }
+
+    @GetMapping("/show-theatreRunning")
+    public void getTheatreRunning(){
+       // Todo  browseShowService
     }
 }
