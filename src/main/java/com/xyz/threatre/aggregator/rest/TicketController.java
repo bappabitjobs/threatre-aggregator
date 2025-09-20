@@ -1,5 +1,7 @@
 package com.xyz.threatre.aggregator.rest;
 
+import com.xyz.threatre.aggregator.dto.BookingResponseDTO;
+import com.xyz.threatre.aggregator.dto.TicketBookingRequestDTO;
 import com.xyz.threatre.aggregator.entities.Ticket;
 import com.xyz.threatre.aggregator.response.BookingResult;
 import com.xyz.threatre.aggregator.rest.request.TicketBookingRequest;
@@ -21,11 +23,9 @@ public class TicketController {
     private TicketBookingService ticketBookingService;
 
     @PostMapping("/book")
-    public ResponseEntity<Ticket> ticketBooking(@RequestBody TicketBookingRequest ticketBookingRequest) {
-
-            Ticket ticket = ticketBookingService.bookTicket(ticketBookingRequest.getTheatreId(),
-                    ticketBookingRequest.getShowTime(),ticketBookingRequest.getPreferredSeatIds(),ticketBookingRequest.getCustomerName(),ticketBookingRequest.getCustomerEmail());
-           return ResponseEntity.ok(ticket);
+    public ResponseEntity<BookingResponseDTO> ticketBooking(@RequestBody TicketBookingRequestDTO ticketBookingRequest) {
+        BookingResponseDTO bookingResponseDTO = ticketBookingService.bookTickets(ticketBookingRequest);
+           return ResponseEntity.ok(bookingResponseDTO);
     }
 
     @PostMapping("/book-multiple")
@@ -53,4 +53,6 @@ public class TicketController {
         BookingResult result = ticketBookingService.bookTicketsWithOffers(showId, seatIds, customerName, customerEmail, city, theatre);
         return ResponseEntity.ok(result);
     }
+
+
 }

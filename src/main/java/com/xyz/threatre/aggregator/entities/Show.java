@@ -25,7 +25,7 @@ public class Show {
 
     private Date date;
 
-    private Room room;
+    private Screen screen;
 
     @ManyToOne
     @JoinColumn

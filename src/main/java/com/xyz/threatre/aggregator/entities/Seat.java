@@ -26,5 +26,5 @@ public class Seat {
 
     @ManyToOne
     @JoinColumn
-    private Room room;
+    private Screen screen;
 }

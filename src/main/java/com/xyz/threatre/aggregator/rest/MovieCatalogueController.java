@@ -1,7 +1,7 @@
 package com.xyz.threatre.aggregator.rest;
 
-import com.xyz.threatre.aggregator.entities.Movie;
-import com.xyz.threatre.aggregator.service.MovieCatalogueService;
+import com.xyz.threatre.aggregator.dto.MovieCatalogueResponse;
+import com.xyz.threatre.aggregator.service.MovieAggregatorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/api/catalogue")
 public class MovieCatalogueController {
-    private final MovieCatalogueService movieCatalogueService;
+    private final MovieAggregatorService movieAggregatorService;
 
-    MovieCatalogueController(MovieCatalogueService movieCatalogueService){
-        this.movieCatalogueService = movieCatalogueService;
+    MovieCatalogueController(MovieAggregatorService movieAggregatorService){
+        this.movieAggregatorService = movieAggregatorService;
     }
     // ex : movies/by-city?city=Bangalore
     @GetMapping("/by-city")
-    public List<Movie> getMoviesByCity(@RequestParam String city){
-        return movieCatalogueService.getMoviesByCity(city);
+    public MovieCatalogueResponse getMoviesByCity(@RequestParam String city){
+        return movieAggregatorService.getMoviesByCity(city);
     }
 
 }

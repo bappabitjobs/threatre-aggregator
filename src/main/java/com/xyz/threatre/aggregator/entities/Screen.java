@@ -9,15 +9,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "SHOWS")
+@Table(name = "SCREEN")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Room {
+public class Screen {
     private Long id;
     private String Room;
     @ManyToOne
-    private Theater threatre;
+    private Theater theater;
 
 }

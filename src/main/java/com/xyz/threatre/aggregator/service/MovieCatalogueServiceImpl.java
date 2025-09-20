@@ -15,6 +15,7 @@ public class MovieCatalogueServiceImpl implements MovieCatalogueService{
     private final ShowRepository showRepository;
 
     public List<Movie> getMoviesByCity(String city){
+        //throw exception when city
         List<Movie> movies =  showRepository.findByCityIgnoreCase(city);
         if(CollectionUtils.isEmpty(movies)){
             throw new MovieNotFound();
