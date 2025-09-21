@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/shows")
+@RequestMapping("/api/theatre/shows")
 public class TheatreShowController {
     private final TheatreShowService theatreShowService;
 
@@ -19,6 +19,7 @@ public class TheatreShowController {
         this.theatreShowService = theatreShowService;
     }
 
+    @PostMapping("/add")
     public ResponseEntity<ShowDTO> addShow(@RequestBody ShowDTO show) {
         return ResponseEntity.ok(theatreShowService.addShow(show));
     }

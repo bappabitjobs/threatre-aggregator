@@ -1,7 +1,10 @@
 package com.xyz.threatre.aggregator.eventDriven;
 
+import org.hibernate.annotations.Comment;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TicketBookingConsumer {
     @KafkaListener(topics = "ticket-booking-requests", groupId = "ticket-booking")
     public void handleBookingRequest(String message) {
