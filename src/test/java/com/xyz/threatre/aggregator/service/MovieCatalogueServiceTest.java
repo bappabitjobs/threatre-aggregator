@@ -1,9 +1,10 @@
 package com.xyz.threatre.aggregator.service;
 
 import com.xyz.threatre.aggregator.categories.Genre;
+import com.xyz.threatre.aggregator.dto.MovieDTO;
 import com.xyz.threatre.aggregator.entities.Movie;
 import com.xyz.threatre.aggregator.exceptions.MovieNotFound;
-import com.xyz.threatre.aggregator.repositories.MovieCatalogueRepository;
+import com.xyz.threatre.aggregator.integration.TheatreMovieProvider;
 import com.xyz.threatre.aggregator.repositories.ShowRepository;
 import org.junit.jupiter.api.Test;
 
@@ -41,5 +42,5 @@ public class MovieCatalogueServiceTest {
         MovieNotFound exception = assertThrows(MovieNotFound.class,()->service.getMoviesByCity("Unknown"));
         assertTrue(exception.getMessage().contains("No movie found"));
     }
-
+    
 }

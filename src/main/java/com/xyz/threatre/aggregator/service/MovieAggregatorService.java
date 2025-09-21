@@ -21,7 +21,6 @@ public class MovieAggregatorService {
     private final List<TheatreMovieProvider> providers;
 
     public MovieCatalogueResponse getMoviesByCity (String city) {
-
         ExecutorService executor = Executors.newFixedThreadPool(providers.size());
         List<Future<List<MovieDTO>>> futures = new ArrayList<>();
         Map<String, String> errors = new ConcurrentHashMap<>();
@@ -53,7 +52,7 @@ public class MovieAggregatorService {
         List<MovieDTO> uniqueMovies = allMovies.stream()
                 .collect(Collectors.toMap(MovieDTO::getName, m -> m, (m1, m2) -> m1))
                 .values().stream().collect(Collectors.toList());
-//Add Errors too for transparency
+// TODO Add Errors too for transparency
         MovieCatalogueResponse response = new MovieCatalogueResponse (city, uniqueMovies, errors);
         return response;
 

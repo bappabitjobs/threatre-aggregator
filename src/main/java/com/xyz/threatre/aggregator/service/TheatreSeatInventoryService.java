@@ -6,6 +6,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+// Q5 --  Each theatre uses to post to Kafka to update its seat repository
 @Service
 public class TheatreSeatInventoryService {
 //Each theatre updates its own inventory
