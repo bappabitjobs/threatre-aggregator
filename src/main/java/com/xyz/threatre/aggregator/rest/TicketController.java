@@ -4,7 +4,6 @@ import com.xyz.threatre.aggregator.dto.BookingResponseDTO;
 import com.xyz.threatre.aggregator.dto.TicketBookingRequestDTO;
 import com.xyz.threatre.aggregator.entities.Ticket;
 import com.xyz.threatre.aggregator.response.BookingResult;
-import com.xyz.threatre.aggregator.rest.request.TicketBookingRequest;
 import com.xyz.threatre.aggregator.service.TicketBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

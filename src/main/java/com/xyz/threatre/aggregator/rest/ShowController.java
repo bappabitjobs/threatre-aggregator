@@ -1,8 +1,7 @@
 package com.xyz.threatre.aggregator.rest;
 
 import com.xyz.threatre.aggregator.entities.Show;
-import com.xyz.threatre.aggregator.repositories.ShowRepository;
-import com.xyz.threatre.aggregator.rest.request.ShowRequest;
+import com.xyz.threatre.aggregator.dto.request.ShowRequest;
 import com.xyz.threatre.aggregator.service.BrowseShowService;
 import com.xyz.threatre.aggregator.service.ShowService;
 import org.springframework.web.bind.annotation.GetMapping;

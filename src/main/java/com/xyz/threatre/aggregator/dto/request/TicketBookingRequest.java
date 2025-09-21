@@ -1,4 +1,4 @@
-package com.xyz.threatre.aggregator.rest.request;
+package com.xyz.threatre.aggregator.dto.request;
 
 import lombok.Data;
 
