@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+//Q4 :  Theatres can create, update and delete shows for the day
 @RestController
 @RequestMapping("/api/theatre/shows")
 public class TheatreShowController {
@@ -24,16 +25,13 @@ public class TheatreShowController {
         return ResponseEntity.ok(theatreShowService.addShow(show));
     }
 
-// Update an existing show
-
+    // Update an existing show
     @PutMapping("/{showId}")
     public ResponseEntity<ShowDTO> updateShow(@PathVariable Long showId, @RequestBody ShowDTO showDTO) {
         return ResponseEntity.ok(theatreShowService.updateShow(showId, showDTO));
-
     }
 
-// Delete a show
-
+   // Delete a show
     @DeleteMapping("/{showId}")
     public ResponseEntity<Void> deleteShow(@PathVariable Long showId) {
         theatreShowService.deleteShow(showId);
@@ -44,8 +42,7 @@ public class TheatreShowController {
     public ResponseEntity<List<Show>> getShowsForTheatreOnDay(
             @PathVariable Long theatreId,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dayStart,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dayEnd)
-    {
-    return ResponseEntity.ok(theatreShowService.getShowsForTheatreOnDay(theatreId, dayStart, dayEnd));
-   }
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dayEnd) {
+        return ResponseEntity.ok(theatreShowService.getShowsForTheatreOnDay(theatreId, dayStart, dayEnd));
+    }
 }

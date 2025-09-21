@@ -18,29 +18,21 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/ticket")
 public class TicketController {
 
-    @Autowired
-    private TicketBookingService ticketBookingService;
+    private final TicketBookingService ticketBookingService;
 
+    public TicketController(TicketBookingService ticketBookingService) {
+        this.ticketBookingService = ticketBookingService;
+    }
+ //Q3 : Book movie tickets by selecting a theatre, timing, and preferred seats for the day
     @PostMapping("/book")
     public ResponseEntity<BookingResponseDTO> ticketBooking(@RequestBody TicketBookingRequestDTO ticketBookingRequest) {
         BookingResponseDTO bookingResponseDTO = ticketBookingService.bookTickets(ticketBookingRequest);
            return ResponseEntity.ok(bookingResponseDTO);
     }
 
-    @PostMapping("/book-multiple")
-    public ResponseEntity<List<Ticket>> bookMultipleTickets(
-            @RequestParam Long showId,
-            @RequestParam List<Long> seatIds,
-            @RequestParam String customerName,
-            @RequestParam String customerEmail)  {
-        try{
-            List<Ticket> tickets = ticketBookingService.bookTickets(showId, seatIds, customerName, customerEmail);
-            return ResponseEntity.ok(tickets);
-        }catch(InterruptedException | ExecutionException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.emptyList());
-        }
-    }
 
+    // Q6 -- Booking platform can introductory rollout offers in selected cities and theaters
+    //To explain this offer , used localDB
     @PostMapping("/book-with-offers")
     public ResponseEntity<BookingResult> bookWithOffers(
             @RequestParam Long showId,

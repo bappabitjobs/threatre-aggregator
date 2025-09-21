@@ -5,9 +5,11 @@ import com.xyz.threatre.aggregator.entities.Seat;
 import com.xyz.threatre.aggregator.service.SeatInventorySyncService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/theatre/seat-inventory")
 public class SeatInventoryController {
 
     private final SeatInventorySyncService seatInventorySyncService;
@@ -16,6 +18,7 @@ public class SeatInventoryController {
         this.seatInventorySyncService = seatInventorySyncService;
     }
 
+    // Q5 . Theatres can allocate seat inventory and update them for the show
     @PostMapping
     public void updateSeatInventory (@RequestBody SeatInventoryDTO seatInventory) {
         seatInventorySyncService.syncSeatInventory(seatInventory);

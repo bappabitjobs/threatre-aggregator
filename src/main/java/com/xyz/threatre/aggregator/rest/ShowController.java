@@ -20,11 +20,7 @@ public class ShowController {
         this.browseShowService = browseShowService;
     }
 
-    @GetMapping("/show-by-movie")
-    public List<Show> getShowByCityAndMovie(@ModelAttribute ShowRequest showRequest){
-        return showService.getShowByMovieCityAndDate(showRequest.getCity(),showRequest.getMovieId(),showRequest.getShowDate());
-    }
-
+    // Q2. -- Browse theatres currently running the show (movie selected) in the town, including show timing by a chosen date
     @GetMapping("/show-theatreRunning")
     public void getTheatreRunning(@RequestParam String movieName,@RequestParam String town, @RequestParam String date ){
         //Date format yyyy-mm-dd

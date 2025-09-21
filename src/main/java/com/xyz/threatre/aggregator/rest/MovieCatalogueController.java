@@ -17,6 +17,7 @@ public class MovieCatalogueController {
     MovieCatalogueController(MovieAggregatorService movieAggregatorService){
         this.movieAggregatorService = movieAggregatorService;
     }
+    //Q1. --- Browse movie catalogues by city
     // ex : movies/by-city?city=Bangalore
     @GetMapping("/by-city")
     public MovieCatalogueResponse getMoviesByCity(@RequestParam String city){
