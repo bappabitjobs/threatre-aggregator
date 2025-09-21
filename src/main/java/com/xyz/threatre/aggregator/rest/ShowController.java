@@ -4,11 +4,9 @@ import com.xyz.threatre.aggregator.entities.Show;
 import com.xyz.threatre.aggregator.dto.request.ShowRequest;
 import com.xyz.threatre.aggregator.service.BrowseShowService;
 import com.xyz.threatre.aggregator.service.ShowService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -28,7 +26,8 @@ public class ShowController {
     }
 
     @GetMapping("/show-theatreRunning")
-    public void getTheatreRunning(){
-       // Todo  browseShowService
+    public void getTheatreRunning(@RequestParam String movieName,@RequestParam String town, @RequestParam String date ){
+        //Date format yyyy-mm-dd
+        browseShowService.browseTheatreRunningShow(movieName,town, LocalDate.parse(date));
     }
 }
