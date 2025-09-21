@@ -1,10 +1,8 @@
 package com.xyz.threatre.aggregator.service;
 
 import com.xyz.threatre.aggregator.categories.Genre;
-import com.xyz.threatre.aggregator.dto.MovieDTO;
 import com.xyz.threatre.aggregator.entities.Movie;
 import com.xyz.threatre.aggregator.exceptions.MovieNotFound;
-import com.xyz.threatre.aggregator.integration.TheatreMovieProvider;
 import com.xyz.threatre.aggregator.repositories.ShowRepository;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +24,6 @@ public class MovieCatalogueServiceTest {
                Movie.builder().movieName("Avengers").genre(Genre.ANIMATION).build(),
                Movie.builder().movieName("InterStellar").genre(Genre.FICTION).build()
        );
-
      when(repo.findByCityIgnoreCase("Bangaluru")).thenReturn(engMovies);
      List<Movie> result = service.getMoviesByCity("Bangaluru");
      assertEquals(2,result.size());
@@ -42,5 +39,5 @@ public class MovieCatalogueServiceTest {
         MovieNotFound exception = assertThrows(MovieNotFound.class,()->service.getMoviesByCity("Unknown"));
         assertTrue(exception.getMessage().contains("No movie found"));
     }
-    
+
 }
